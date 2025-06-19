@@ -1,12 +1,14 @@
 const express = require('express');
 const router = express.Router();
 const User = require('../models/user.model');
+const UserController = require('../controllers/user.controller');
 const { verifyToken } = require('../middlewares/auth.middleware');
 
-router.get('/', verifyToken, userController.getAll);
-router.get('/:id', verifyToken, userController.getById);
-router.put('/:id', verifyToken, userController.update);
-router.delete('/:id', verifyToken, userController.delete);
+router.get('/', verifyToken, UserController.getAll);
+router.get('/:id', verifyToken, UserController.getById);
+router.put('/:id', verifyToken, UserController.update);
+router.delete('/:id', verifyToken, UserController.delete);
+
 router.get('/', async (req, res) => {
 try {
   const users = await User.findAll();

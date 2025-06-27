@@ -13,4 +13,14 @@ const verifyToken = (req, res, next) => {
   }
 };
 
-module.exports = { verifyToken };
+const authorizeRole = (allowedRoles) => {
+  return (req, res, next) => {
+    if (!req.user || !allowedRoles.includes(req.user.rol)) {
+      return res.status(403).json({ msg: 'Acceso no autorizado' });
+    }
+    next();
+  };
+};
+
+module.exports = { verifyToken, authorizeRole };
+

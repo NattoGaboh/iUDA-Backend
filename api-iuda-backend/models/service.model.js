@@ -6,11 +6,12 @@ const Servicio = sequelize.define('services_offered', {
   provider_id: { type: DataTypes.UUID, allowNull: false },
   categoria_id: { type: DataTypes.UUID, allowNull: false },
   descripcion: DataTypes.TEXT,
-  tarifa: DataTypes.DECIMAL(10,2),
+  precio_base: DataTypes.DECIMAL(10,2),
   tipo_tarifa: DataTypes.STRING,
   disponible: { type: DataTypes.BOOLEAN, defaultValue: true },
 }, {
-  timestamps: true
+  tableName: 'services_offered',
+  timestamps: false
 });
 
 module.exports = Servicio;

@@ -3,9 +3,18 @@ const express = require('express');
 const app = express();
 const sequelize = require('./config/db');
 const userRoutes = require('./routes/user.routes');
+const serviceRoutes = require('./routes/service.routes');
 const routes = require('./routes');
+const cors = require('cors')
+
+// Permite el acceso desde el frontend
+app.use(cors({
+  origin: "http://localhost:5173", // Cambia esto si tu frontend está en otro puerto
+  credentials: true
+}));
 
 app.use(express.json());
+app.use('/api/servicios', serviceRoutes);
 app.use('/api/usuarios', userRoutes);
 app.use('/api', routes);
 
